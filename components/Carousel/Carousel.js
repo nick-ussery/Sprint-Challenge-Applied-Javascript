@@ -17,3 +17,45 @@
     <div class="right-button"> > </div>
   </div>
 */
+const createCarousel = ()=>{
+  const carousel = document.createElement('div');
+  const leftButton = document.createElement('div');
+  const rightButton = document.createElement('div');
+  const right = "\u21DD"
+  const left = '\u21D0';
+
+  const allImages = [
+    './assets/carousel/computer.jpeg',
+    './assets/carousel/mountains.jpeg',
+    './assets/carousel/trees.jpeg',
+    './assets/carousel/turntable.jpeg'
+  ];
+
+  const carouselImg = document.createElement('img');
+  carousel.classList.add('carousel');
+  leftButton.classList.add('left-button');
+  rightButton.classList.add('right-button');
+
+
+  carousel.append(leftButton, carouselImg, rightButton);
+  leftButton.textContent = left;
+  rightButton.textContent = right;
+  let currentImage = 0;
+  carouselImg.src = allImages[0];
+  rightButton.addEventListener('click', ()=>{
+    currentImage++;
+    if(currentImage>3){currentImage =0}
+    carouselImg.src = allImages[currentImage];
+  })
+
+  leftButton.addEventListener('click', ()=>{
+    currentImage-=1;
+    if(currentImage<0){currentImage =3}
+    carouselImg.src = allImages[currentImage];
+  })
+
+  const carouselContainer = document.querySelector('.carousel-container');
+  carouselContainer.append(carousel);
+}
+
+createCarousel();
